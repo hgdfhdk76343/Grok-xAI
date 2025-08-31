@@ -45,10 +45,10 @@
         
         /* Header Styles */
         header {
-            background: rgba(10, 10, 26, 0.8);
+            background: rgba(10, 10, 26, 0.95);
             backdrop-filter: blur(10px);
             color: white;
-            padding: 18px 0;
+            padding: 15px 0;
             position: fixed;
             top: 0;
             left: 0;
@@ -67,20 +67,20 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
         
         .logo img {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
             object-fit: contain;
         }
         
         .logo-text {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 24px;
+            font-size: 20px;
             background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -88,6 +88,41 @@
         
         .nav-links {
             display: none;
+            position: fixed;
+            top: 65px;
+            left: 0;
+            width: 100%;
+            background: rgba(18, 18, 36, 0.95);
+            backdrop-filter: blur(10px);
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            border-top: 1px solid rgba(108, 66, 245, 0.3);
+        }
+        
+        .nav-links.active {
+            display: flex;
+        }
+        
+        .nav-links li {
+            list-style: none;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .nav-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
         }
         
         .mobile-menu-btn {
@@ -96,11 +131,12 @@
             color: white;
             font-size: 24px;
             cursor: pointer;
+            z-index: 1001;
         }
         
         /* Hero Section */
         .hero {
-            padding: 140px 0 80px;
+            padding: 110px 0 60px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -117,9 +153,9 @@
             display: inline-block;
             background: rgba(108, 66, 245, 0.15);
             color: var(--accent);
-            padding: 8px 20px;
+            padding: 8px 18px;
             border-radius: 30px;
-            font-size: 16px;
+            font-size: 14px;
             margin-bottom: 20px;
             border: 1px solid rgba(108, 66, 245, 0.5);
             backdrop-filter: blur(5px);
@@ -127,87 +163,130 @@
         
         .hero h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 42px;
+            font-size: 32px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             line-height: 1.2;
             background: linear-gradient(to right, #fff, var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            padding: 0 10px;
         }
         
         .hero p {
-            font-size: 18px;
+            font-size: 16px;
             color: #b0b0b0;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            padding: 0 15px;
         }
         
         .hero-image {
             width: 100%;
-            max-width: 800px;
-            margin: 40px auto 0;
+            max-width: 300px;
+            margin: 30px auto 0;
             position: relative;
         }
         
         .hero-image img {
             width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
         
         .hero-ai-indicator {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             background: rgba(0, 229, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 10px 20px;
-            border-radius: 30px;
+            padding: 8px 15px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 14px;
+            gap: 8px;
+            font-size: 12px;
             border: 1px solid rgba(0, 229, 255, 0.3);
             animation: pulse 2s infinite;
         }
         
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 229, 255, 0); }
+            70% { box-shadow: 0 0 0 8px rgba(0, 229, 255, 0); }
             100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0); }
         }
         
         .hero-ai-indicator::before {
             content: "";
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             background: var(--accent);
             border-radius: 50%;
             display: inline-block;
         }
         
+        /* New Download Button in Hero Section */
+        .hero-download-btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin: 25px auto 15px;
+            box-shadow: 0 8px 20px rgba(108, 66, 245, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(108, 66, 245, 0.5);
+        }
+        
+        .hero-download-btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0));
+            transform: rotate(30deg);
+            transition: all 0.5s ease;
+        }
+        
+        .hero-download-btn:hover::after {
+            transform: translate(50%, 50%) rotate(30deg);
+        }
+        
         /* Features Section */
         .features {
-            padding: 80px 0;
+            padding: 60px 0;
             background: rgba(18, 18, 36, 0.6);
             backdrop-filter: blur(10px);
-            border-radius: 30px;
-            margin: 40px 20px;
+            border-radius: 20px;
+            margin: 30px 15px;
             border: 1px solid rgba(108, 66, 245, 0.2);
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             position: relative;
+            padding: 0 15px;
         }
         
         .section-title h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             margin-bottom: 15px;
             color: white;
@@ -217,6 +296,7 @@
             color: #b0b0b0;
             max-width: 600px;
             margin: 0 auto;
+            font-size: 16px;
         }
         
         .link-instructions {
@@ -224,15 +304,14 @@
             border: 1px solid rgba(108, 66, 245, 0.3);
             border-radius: 10px;
             padding: 20px;
-            margin: 30px auto;
-            max-width: 800px;
+            margin: 25px 15px;
             text-align: left;
         }
         
         .link-instructions h3 {
             color: var(--accent);
             margin-bottom: 15px;
-            font-size: 20px;
+            font-size: 18px;
         }
         
         .link-instructions ol {
@@ -243,6 +322,7 @@
         .link-instructions li {
             margin-bottom: 10px;
             color: #b0b0b0;
+            font-size: 14px;
         }
         
         .link-instructions code {
@@ -251,19 +331,20 @@
             border-radius: 4px;
             font-family: monospace;
             color: var(--accent);
+            font-size: 12px;
         }
         
         .features-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 30px;
-            padding: 0 20px;
+            gap: 20px;
+            padding: 0 15px;
         }
         
         .feature-card {
             background: linear-gradient(145deg, rgba(25, 25, 50, 0.5), rgba(15, 15, 35, 0.5));
-            padding: 30px;
-            border-radius: 20px;
+            padding: 25px 20px;
+            border-radius: 16px;
             text-align: center;
             transition: transform 0.3s ease;
             border: 1px solid rgba(108, 66, 245, 0.2);
@@ -276,62 +357,66 @@
         }
         
         .feature-icon {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 18px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
+            margin: 0 auto 15px;
             color: white;
-            font-size: 28px;
+            font-size: 24px;
         }
         
         .feature-card h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 22px;
-            margin-bottom: 15px;
+            font-size: 20px;
+            margin-bottom: 12px;
             color: white;
         }
         
         .feature-card p {
             color: #b0b0b0;
-            font-size: 16px;
+            font-size: 14px;
+            line-height: 1.5;
         }
         
         /* Download Section */
         .download {
-            padding: 80px 0;
+            padding: 60px 0;
             text-align: center;
         }
         
         .download h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 36px;
-            margin-bottom: 20px;
+            font-size: 28px;
+            margin-bottom: 15px;
             color: white;
+            padding: 0 15px;
         }
         
         .download p {
             color: #b0b0b0;
             max-width: 600px;
-            margin: 0 auto 50px;
-            font-size: 18px;
+            margin: 0 auto 40px;
+            font-size: 16px;
+            padding: 0 15px;
         }
         
         .download-options {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 25px;
-            max-width: 500px;
+            gap: 20px;
+            max-width: 400px;
             margin: 0 auto;
+            padding: 0 15px;
         }
         
         .download-option {
             background: linear-gradient(145deg, rgba(25, 25, 50, 0.5), rgba(15, 15, 35, 0.5));
-            padding: 25px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -345,63 +430,64 @@
         }
         
         .download-option i {
-            font-size: 40px;
-            margin-bottom: 15px;
+            font-size: 36px;
+            margin-bottom: 12px;
             color: var(--accent);
         }
         
         .download-option h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 22px;
-            margin-bottom: 10px;
+            font-size: 20px;
+            margin-bottom: 8px;
             color: white;
         }
         
         .download-option p {
             color: #b0b0b0;
-            margin-bottom: 20px;
-            font-size: 16px;
+            margin-bottom: 15px;
+            font-size: 14px;
         }
         
         .btn-download {
             display: inline-block;
             background: linear-gradient(to right, var(--primary), var(--primary-dark));
             color: white;
-            padding: 14px 30px;
+            padding: 14px 25px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 15px;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
             width: 100%;
-            max-width: 200px;
+            max-width: 180px;
         }
         
         .btn-download:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(108, 66, 245, 0.3);
+            box-shadow: 0 8px 15px rgba(108, 66, 245, 0.3);
         }
         
         /* Footer */
         footer {
             background: rgba(8, 8, 20, 0.9);
-            padding: 60px 0 30px;
+            padding: 50px 0 25px;
             border-top: 1px solid rgba(108, 66, 245, 0.2);
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 30px;
+            margin-bottom: 30px;
+            padding: 0 15px;
         }
         
         .footer-brand h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 22px;
+            margin-bottom: 15px;
             background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -409,14 +495,15 @@
         
         .footer-brand p {
             color: #b0b0b0;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             max-width: 300px;
+            font-size: 14px;
         }
         
         .footer-links h4 {
             font-family: 'Montserrat', sans-serif;
             font-size: 18px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: white;
             position: relative;
         }
@@ -436,7 +523,7 @@
         }
         
         .footer-links li {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         
         .footer-links a {
@@ -444,6 +531,7 @@
             text-decoration: none;
             transition: color 0.3s ease;
             display: inline-block;
+            font-size: 14px;
         }
         
         .footer-links a:hover {
@@ -453,13 +541,13 @@
         
         .social-icons {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 15px;
         }
         
         .social-icons a {
-            width: 40px;
-            height: 40px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: rgba(108, 66, 245, 0.1);
             display: flex;
@@ -478,10 +566,10 @@
         
         .copyright {
             text-align: center;
-            padding-top: 30px;
+            padding-top: 25px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #6c757d;
-            font-size: 14px;
+            font-size: 13px;
         }
         
         /* Download Modal */
@@ -492,66 +580,69 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(5px);
             z-index: 2000;
             justify-content: center;
             align-items: center;
+            padding: 15px;
         }
         
         .modal-content {
             background: linear-gradient(145deg, rgba(25, 25, 50, 0.95), rgba(15, 15, 35, 0.95));
-            padding: 30px;
-            border-radius: 20px;
+            padding: 25px;
+            border-radius: 16px;
             text-align: center;
-            max-width: 400px;
-            width: 90%;
+            width: 100%;
+            max-width: 350px;
             border: 1px solid rgba(108, 66, 245, 0.5);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
         
         .modal-content h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
-            margin-bottom: 15px;
+            font-size: 22px;
+            margin-bottom: 12px;
             color: white;
         }
         
         .modal-content p {
             color: #b0b0b0;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            font-size: 15px;
         }
         
         .progress-bar {
             width: 100%;
-            height: 10px;
+            height: 8px;
             background: rgba(108, 66, 245, 0.2);
-            border-radius: 5px;
+            border-radius: 4px;
             overflow: hidden;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .progress {
             height: 100%;
             width: 0%;
             background: linear-gradient(to right, var(--primary), var(--accent));
-            border-radius: 5px;
+            border-radius: 4px;
             transition: width 0.5s ease;
         }
         
         .modal-buttons {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
         }
         
         .modal-btn {
-            padding: 12px 25px;
+            padding: 12px 20px;
             border-radius: 30px;
             border: none;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 14px;
         }
         
         .modal-btn.primary {
@@ -569,19 +660,23 @@
         @media (min-width: 768px) {
             .nav-links {
                 display: flex;
-                gap: 30px;
-                list-style: none;
+                position: static;
+                flex-direction: row;
+                width: auto;
+                background: transparent;
+                padding: 0;
+                box-shadow: none;
+                border: none;
+                gap: 25px;
+            }
+            
+            .nav-links li {
+                margin: 0;
             }
             
             .nav-links a {
-                color: #b0b0b0;
-                text-decoration: none;
-                font-weight: 500;
-                transition: color 0.3s ease;
-            }
-            
-            .nav-links a:hover {
-                color: var(--accent);
+                padding: 5px;
+                font-size: 16px;
             }
             
             .mobile-menu-btn {
@@ -597,13 +692,13 @@
             }
             
             .footer-content {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
         @media (min-width: 992px) {
             .hero h1 {
-                font-size: 52px;
+                font-size: 42px;
             }
             
             .features-grid {
@@ -611,6 +706,10 @@
             }
             
             .download-options {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-content {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
@@ -625,14 +724,14 @@
                 <div class="logo-text">Gork xAI</div>
             </div>
             
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#download">Download</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             
-            <button class="mobile-menu-btn">
+            <button class="mobile-menu-btn" id="menuToggle">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
@@ -650,6 +749,11 @@
                     <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400' viewBox='0 0 800 400'><rect width='800' height='400' fill='%23111' rx='20'/><rect x='50' y='50' width='700' height='300' fill='%231a1a2e' rx='15'/><rect x='75' y='80' width='650' height='40' fill='%236c42f5' rx='10'/><circle cx='100' cy='100' r='10' fill='%2300e5ff'/><rect x='130' y='90' width='200' height='20' fill='%23fff' rx='5'/><rect x='75' y='140' width='300' height='180' fill='%23222244' rx='10'/><rect x='400' y='140' width='300' height='80' fill='%23222244' rx='10'/><rect x='400' y='240' width='300' height='80' fill='%23222244' rx='10'/><circle cx='430' cy='170' r='15' fill='%2300d26a'/><rect x='460' y='160' width='220' height='20' fill='%23b0b0b0' rx='5'/><circle cx='430' cy='270' r='15' fill='%23ff4d4d'/><rect x='460' y='260' width='220' height='20' fill='%23b0b0b0' rx='5'/></svg>" alt="Gork xAI App Interface">
                     <div class="hero-ai-indicator">AI is thinking</div>
                 </div>
+                
+                <!-- New Download Button in Hero Section -->
+                <button class="hero-download-btn" data-platform="android">
+                    <i class="fas fa-download"></i> Download Now
+                </button>
             </div>
         </div>
     </section>
@@ -665,10 +769,11 @@
             <div class="link-instructions">
                 <h3>How to Download Grok xAI App</h3>
                 <ol>
-                    <li>Click on Download Button and Download App</li>
-                    <li>click on the <code>downloadButton</code> object</li>
+                    <li>Click on the download button for your device</li>
+                    <li>Wait for the download to complete</li>
+                    <li>Install and enjoy the power of AI</li>
                 </ol>
-                <p><strong>Example:</strong> <code>Android: "https://github.com/hgdfhdk76343/Grok-xAI/releases/download/v1.0.0/Grok.xAI.apk",</code></p>
+                <p><strong>Direct Link:</strong> <code>https://github.com/hgdfhdk76343/Grok-xAI/releases</code></p>
             </div>
             
             <div class="features-grid">
@@ -818,16 +923,23 @@
         // ADD YOUR APP DOWNLOAD LINKS HERE
         // =============================================
         const downloadLinks = {
-            ios: "https://github.com/hgdfhdk76343/Grok-xAI/releases/download/v1.0.0/Grok.xAI.apk", // Replace with your iOS app link
-            android: "https://github.com/hgdfhdk76343/Grok-xAI/releases/download/v1.0.0/Grok.xAI.apk", // Replace with your Android app link
-            desktop: "https://github.com/hgdfhdk76343/Grok-xAI/releases/download/v1.0.0/Grok.xAI.apk" // Replace with your desktop app link
+            ios: "https://github.com/hgdfhdk76343/Grok-xAI/releases/download/v1.0.0/Grok.xAI.apk",
+            android: "https://github.com/hgdfhdk76343/Grok-xAI/releases/download/v1.0.0/Grok.xAI.apk",
+            desktop: "https://github.com/hgdfhdk76343/Grok-xAI/releases/download/v1.0.0/Grok.xAI.apk"
         };
         // =============================================
         
         // Mobile menu toggle functionality
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('navLinks').classList.remove('active');
+            });
         });
         
         // Smooth scrolling for navigation links
@@ -841,7 +953,7 @@
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 70,
                         behavior: 'smooth'
                     });
                 }
@@ -850,6 +962,7 @@
         
         // Download functionality
         const downloadButtons = document.querySelectorAll('.btn-download');
+        const heroDownloadBtn = document.querySelector('.hero-download-btn');
         const downloadModal = document.getElementById('downloadModal');
         const downloadProgress = document.getElementById('downloadProgress');
         const cancelDownloadBtn = document.getElementById('cancelDownload');
@@ -857,6 +970,12 @@
         
         let downloadTimer;
         let currentDownloadLink = "";
+        
+        // Add event listener to the new hero download button
+        heroDownloadBtn.addEventListener('click', function() {
+            const platform = this.getAttribute('data-platform');
+            startDownload(platform);
+        });
         
         downloadButtons.forEach(button => {
             button.addEventListener('click', function() {
