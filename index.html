@@ -1010,55 +1010,36 @@
         }, 200);
     }
     
-    function downloadComplete(platform) {
-        // Create a virtual download link
-        const downloadLink = document.createElement('a');
-        
-        // Set appropriate file name based on platform
-        let fileName = 'Gork_xAI_';
-        switch(platform) {
-            case 'ios':
-                fileName += 'iOS.app';
-                break;
-            case 'android':
-                fileName += 'Android.apk';
-                break;
-            case 'desktop':
-                fileName += 'Desktop.zip';
-                break;
-            default:
-                fileName += 'App.dmg';
-        }
-        
-        // Set the download link (fixed: no target="_blank")
-        downloadLink.href = currentDownloadLink;
-        downloadLink.download = fileName;
-        
-        // Programmatically click the link to trigger download
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-        
-        // Update modal for completed download
-        document.querySelector('.modal-content h3').textContent = 'Download Complete!';
-        document.querySelector('.modal-content p').textContent = 'Gork xAI has been successfully downloaded.';
-        
-        // Show open button
-        openDownloadBtn.style.display = 'block';
+   function downloadComplete(platform) {
+    // Set appropriate file name based on platform
+    let fileName = 'Gork_xAI_';
+    switch(platform) {
+        case 'ios':
+            fileName += 'iOS.app';
+            break;
+        case 'android':
+            fileName += 'Android.apk';
+            break;
+        case 'desktop':
+            fileName += 'Desktop.zip';
+            break;
+        default:
+            fileName += 'App.dmg';
     }
+
+    // ✅ Redirect to file directly (no new tab, no pending)
+    window.location.assign(currentDownloadLink);
+
+    // Update modal for completed download
+    document.querySelector('.modal-content h3').textContent = 'Download Complete!';
+    document.querySelector('.modal-content p').textContent = 'Your download should begin automatically.';
     
-    // Cancel download
-    cancelDownloadBtn.addEventListener('click', function() {
-        clearInterval(downloadTimer);
-        downloadModal.style.display = 'none';
-    });
-    
-    // Open download (fixed: direct redirect instead of new tab)
-    openDownloadBtn.addEventListener('click', function() {
-        window.location.href = currentDownloadLink;
-        downloadModal.style.display = 'none';
-    });
-    
-    // Hide open button initially
-    openDownloadBtn.style.display = 'none';
-</script>
+    // Show open button
+    openDownloadBtn.style.display = 'block';
+}
+
+// Open download (secondary button)
+openDownloadBtn.addEventListener('click', function() {
+    window.location.assign(currentDownloadLink);  // ✅ same page, no new tab
+    downloadModal.style.display = 'none';
+});
