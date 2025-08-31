@@ -918,149 +918,147 @@
         </div>
     </div>
 
-    <script>
-        // =============================================
-        // ADD YOUR APP DOWNLOAD LINKS HERE
-        // =============================================
-        const downloadLinks = {
-            ios: "https://github.com/hgdfhdk76343/Grok-xAI/releases/download/v1.0.0/Grok.xAI.apk",
-            android: "https://github.com/hgdfhdk76343/Grok-xAI/releases/download/v1.0.0/Grok.xAI.apk",
-            desktop: "https://github.com/hgdfhdk76343/Grok-xAI/releases/download/v1.0.0/Grok.xAI.apk"
-        };
-        // =============================================
-        
-        // Mobile menu toggle functionality
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
+   <script>
+    // =============================================
+    // ADD YOUR APP DOWNLOAD LINKS HERE
+    // =============================================
+    const downloadLinks = {
+        ios: "https://github.com/hgdfhdk76343/Grok-xAI/releases/download/v1.0.0/Grok.xAI.apk",
+        android: "https://github.com/hgdfhdk76343/Grok-xAI/releases/download/v1.0.0/Grok.xAI.apk",
+        desktop: "https://github.com/hgdfhdk76343/Grok-xAI/releases/download/v1.0.0/Grok.xAI.apk"
+    };
+    // =============================================
+    
+    // Mobile menu toggle functionality
+    document.getElementById('menuToggle').addEventListener('click', function() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            document.getElementById('navLinks').classList.remove('active');
         });
-        
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.getElementById('navLinks').classList.remove('active');
-            });
+    });
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if(targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            }
         });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Download functionality
-        const downloadButtons = document.querySelectorAll('.btn-download');
-        const heroDownloadBtn = document.querySelector('.hero-download-btn');
-        const downloadModal = document.getElementById('downloadModal');
-        const downloadProgress = document.getElementById('downloadProgress');
-        const cancelDownloadBtn = document.getElementById('cancelDownload');
-        const openDownloadBtn = document.getElementById('openDownload');
-        
-        let downloadTimer;
-        let currentDownloadLink = "";
-        
-        // Add event listener to the new hero download button
-        heroDownloadBtn.addEventListener('click', function() {
+    });
+    
+    // Download functionality
+    const downloadButtons = document.querySelectorAll('.btn-download');
+    const heroDownloadBtn = document.querySelector('.hero-download-btn');
+    const downloadModal = document.getElementById('downloadModal');
+    const downloadProgress = document.getElementById('downloadProgress');
+    const cancelDownloadBtn = document.getElementById('cancelDownload');
+    const openDownloadBtn = document.getElementById('openDownload');
+    
+    let downloadTimer;
+    let currentDownloadLink = "";
+    
+    // Add event listener to the new hero download button
+    heroDownloadBtn.addEventListener('click', function() {
+        const platform = this.getAttribute('data-platform');
+        startDownload(platform);
+    });
+    
+    downloadButtons.forEach(button => {
+        button.addEventListener('click', function() {
             const platform = this.getAttribute('data-platform');
             startDownload(platform);
         });
+    });
+    
+    function startDownload(platform) {
+        // Get the download link based on platform
+        currentDownloadLink = downloadLinks[platform];
         
-        downloadButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const platform = this.getAttribute('data-platform');
-                startDownload(platform);
-            });
-        });
+        // Show modal
+        downloadModal.style.display = 'flex';
         
-        function startDownload(platform) {
-            // Get the download link based on platform
-            currentDownloadLink = downloadLinks[platform];
-            
-            // Show modal
-            downloadModal.style.display = 'flex';
-            
-            // Reset progress
-            downloadProgress.style.width = '0%';
-            
-            // Simulate download progress
-            let progress = 0;
-            clearInterval(downloadTimer);
-            
-            downloadTimer = setInterval(() => {
-                progress += Math.random() * 10;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(downloadTimer);
-                    downloadComplete(platform);
-                }
-                
-                downloadProgress.style.width = progress + '%';
-            }, 200);
-        }
+        // Reset progress
+        downloadProgress.style.width = '0%';
         
-        function downloadComplete(platform) {
-            // Create a virtual download link
-            const downloadLink = document.createElement('a');
-            
-            // Set appropriate file name based on platform
-            let fileName = 'Gork_xAI_';
-            switch(platform) {
-                case 'ios':
-                    fileName += 'iOS.app';
-                    break;
-                case 'android':
-                    fileName += 'Android.apk';
-                    break;
-                case 'desktop':
-                    fileName += 'Desktop.zip';
-                    break;
-                default:
-                    fileName += 'App.dmg';
+        // Simulate download progress
+        let progress = 0;
+        clearInterval(downloadTimer);
+        
+        downloadTimer = setInterval(() => {
+            progress += Math.random() * 10;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(downloadTimer);
+                downloadComplete(platform);
             }
             
-            // Set the download link
-            downloadLink.href = currentDownloadLink;
-            downloadLink.target = '_blank';
-            
-            // Programmatically click the link to trigger download
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-            document.body.removeChild(downloadLink);
-            
-            // Update modal for completed download
-            document.querySelector('.modal-content h3').textContent = 'Download Complete!';
-            document.querySelector('.modal-content p').textContent = 'Gork xAI has been successfully downloaded.';
-            
-            // Show open button
-            openDownloadBtn.style.display = 'block';
+            downloadProgress.style.width = progress + '%';
+        }, 200);
+    }
+    
+    function downloadComplete(platform) {
+        // Create a virtual download link
+        const downloadLink = document.createElement('a');
+        
+        // Set appropriate file name based on platform
+        let fileName = 'Gork_xAI_';
+        switch(platform) {
+            case 'ios':
+                fileName += 'iOS.app';
+                break;
+            case 'android':
+                fileName += 'Android.apk';
+                break;
+            case 'desktop':
+                fileName += 'Desktop.zip';
+                break;
+            default:
+                fileName += 'App.dmg';
         }
         
-        // Cancel download
-        cancelDownloadBtn.addEventListener('click', function() {
-            clearInterval(downloadTimer);
-            downloadModal.style.display = 'none';
-        });
+        // Set the download link (fixed: no target="_blank")
+        downloadLink.href = currentDownloadLink;
+        downloadLink.download = fileName;
         
-        // Open download (simulated)
-        openDownloadBtn.addEventListener('click', function() {
-            window.open(currentDownloadLink, '_blank');
-            downloadModal.style.display = 'none';
-        });
+        // Programmatically click the link to trigger download
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
         
-        // Hide open button initially
-        openDownloadBtn.style.display = 'none';
-    </script>
-</body>
-</html>
+        // Update modal for completed download
+        document.querySelector('.modal-content h3').textContent = 'Download Complete!';
+        document.querySelector('.modal-content p').textContent = 'Gork xAI has been successfully downloaded.';
+        
+        // Show open button
+        openDownloadBtn.style.display = 'block';
+    }
+    
+    // Cancel download
+    cancelDownloadBtn.addEventListener('click', function() {
+        clearInterval(downloadTimer);
+        downloadModal.style.display = 'none';
+    });
+    
+    // Open download (fixed: direct redirect instead of new tab)
+    openDownloadBtn.addEventListener('click', function() {
+        window.location.href = currentDownloadLink;
+        downloadModal.style.display = 'none';
+    });
+    
+    // Hide open button initially
+    openDownloadBtn.style.display = 'none';
+</script>
